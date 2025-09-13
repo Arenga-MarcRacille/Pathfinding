@@ -1,4 +1,4 @@
-namespace Pathfinind.Models
+namespace Pathfinding.Models
 {
     public class ErrorViewModel
     {

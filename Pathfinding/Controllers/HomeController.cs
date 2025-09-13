@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pathfinding.Data;
-using Pathfinind.Models;
+using Pathfinding.Models;
 using System.Diagnostics;
 
-namespace Pathfinind.Controllers
+namespace Pathfinding.Controllers
 {
     public class HomeController : Controller
     {
