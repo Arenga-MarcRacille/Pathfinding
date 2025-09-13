@@ -1,0 +1,43 @@
+﻿@model Pathfinding.Models.MapData
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MapData</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nodes" class="control-label"></label>
+                <input asp-for="Nodes" class="form-control" />
+                <span asp-validation-for="Nodes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Edges" class="control-label"></label>
+                <input asp-for="Edges" class="form-control" />
+                <span asp-validation-for="Edges" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MapsId" class="control-label"></label>
+                <input asp-for="MapsId" class="form-control" />
+                <span asp-validation-for="MapsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

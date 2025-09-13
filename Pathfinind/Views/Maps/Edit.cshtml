@@ -1,0 +1,68 @@
+﻿@model Pathfinding.Models.Maps
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Maps</h4>
+<hr />
+<div>
+
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" id="nodesJson" name="NodesJson" />
+        <input type="hidden" id="edgesJson" name="EdgesJson" />
+
+        <div class="form-group">
+            <div class="mb-2 btn-group">
+                <button type="button" id="addNodeBtn" class="btn btn-outline-primary">Add Node</button>
+                <button type="button" id="connectNodeBtn" class="btn btn-outline-primary">Connect</button>
+                <button type="button" id="deleteNodeBtn" class="btn btn-outline-primary">Delete</button>
+                <button type="button" id="editNodeBtn" class="btn btn-outline-primary">Edit</button>
+            </div>
+            <div id="network" style="width: 100%; height: 600px; border: 1px solid lightgray;"></div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Image" class="control-label"></label>
+            <input type="file" asp-for="Image" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+            
+
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        var mapDataFromView = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
+    </script>
+
+    <script type="module" src="~/js/Maps/map-edit.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

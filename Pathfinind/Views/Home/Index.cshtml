@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Pathfinding</h1>
+</div>
+
+<div class="d-flex justify-content-around mb-2">
+    <div>
+        <label for="mapSelection" class="form-label">Map select</label>
+        <select id="mapSelection" class="form-select" aria-label="Default select example">
+            @{
+                bool first = true;
+            }
+            @foreach (var item in Model)
+            {
+                if (first)
+                {
+                    <option value="@item.Id" selected>@item.Name</option>
+                    first = false;
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+
+    </div>
+
+    <div>
+        <label for="algorithmSelection" class="form-label">Algorithm select</label>
+        <select id="algorithmSelection" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            
+        </select>
+    </div>
+
+    <div>
+        <label for="From" class="form-label">From</label>
+        <input type="text" class="form-control" id="from" placeholder="From">
+    </div>
+
+    <div>
+        <label for="To" class="form-label">To</label>
+        <input type="text" class="form-control" id="to" placeholder="To">
+    </div>
+
+    <div class="d-flex align-items-end">
+        <button id="search" type="button" class="btn btn-primary">Search</button>
+    </div>
+</div>
+
+<div>
+    @* <div>
+        <img id="map" src="~/resources/maps/sampleMap1.jpg" alt="Map" />
+    </div> *@
+    <div id="network" style="width: 100%; height: 600px; border: 1px solid lightgray;"></div>
+
+</div>
+
+@section Scripts {
+    <script>
+        var mapDataFromView = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
+    </script>
+
+    <script type="module" src="~/js/Home/home.js" asp-append-version="true"></script>
+}
