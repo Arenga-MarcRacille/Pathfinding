@@ -75,12 +75,19 @@ $(async function () {
             };
         }
 
-        
+        $("#pathResultContainer").hide();
+    });
+
+    //Change search type
+    $("#searchType").on("change", function () {
+        const type = $(this).val();
+        $("#pointToPoint").toggle(type === "pointToPoint");
+        $("#travellingSalesman").toggle(type === "travellingSalesman");
+        $("#pathResultContainer").hide();
     });
 
 
-
-    $("#search").on("click", function () {
+    $("#searchPointToPoint").on("click", function () {
         let from = $("#from").val();
         let to = $("#to").val();
 
@@ -93,5 +100,23 @@ $(async function () {
         }
 
 
+    });
+
+    $("#searchTsp").on("click", function () {
+        let destinations = $("#destinations").val();
+        destinations = destinations.split(',');
+        destinations = destinations.map(d => d.trim());
+
+        let returnToStart = $("#return").is(":checked");
+
+
+        // Example TSP for nodes "A", "B", "C", "D"
+        const result = visGraph.highlightTSP(destinations, "heuristicTSP", returnToStart);
+
+        console.log("Optimal tour (labels):", result.labels, "Cost:", result.cost);
+
+        $("#pathResult").text(result.labels.join(" -> "));
+        $("#pathCost").text(result.cost);
+        $("#pathResultContainer").show();
     });
 });

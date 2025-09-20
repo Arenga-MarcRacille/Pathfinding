@@ -31,27 +31,70 @@
     </div>
 
     <div>
-        <label for="algorithmSelection" class="form-label">Algorithm select</label>
-        <select id="algorithmSelection" class="form-select" aria-label="Default select example">
+        <label for="searchType" class="form-label">Search Type</label>
+        <select id="searchType" class="form-select" aria-label="Default select example">
             <option selected>Open this select menu</option>
-            
+            <option value="pointToPoint">Point to point</option>
+            <option value="travellingSalesman">Travelling Salesman</option>
         </select>
     </div>
 
     <div>
-        <label for="From" class="form-label">From</label>
-        <input type="text" class="form-control" id="from" placeholder="From">
+        <div id="pointToPoint" style="display: none;">
+            <div class="d-flex gap-2">
+                <div>
+                    <label for="From" class="form-label">From</label>
+                    <input type="text" class="form-control" id="from" placeholder="From">
+                </div>
+
+                <div>
+                    <label for="To" class="form-label">To</label>
+                    <input type="text" class="form-control" id="to" placeholder="To">
+                </div>
+
+                <div class="d-flex align-items-end">
+                    <button id="searchPointToPoint" type="button" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="travellingSalesman" style="display: none;">
+            <div class="d-flex gap-2 align-items-center">
+                <div>
+                    <div>
+                        <label for="From" class="form-label">Destinations</label>
+                        <input type="text" class="form-control" id="destinations" placeholder="N1,N2,N3">
+                    </div>
+                    <div>
+                        <label for="From" class="form-label">Return to start?</label>
+                        <input type="checkbox" class="form-check-input" id="return" checked>
+                    </div>
+                </div>
+                
+
+                <div class="d-flex align-items-end">
+                    <button id="searchTsp" type="button" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            
+        </div>
     </div>
 
+    
+    
+
+    
+</div>
+
+<div id="pathResultContainer" style="display: none;">
     <div>
-        <label for="To" class="form-label">To</label>
-        <input type="text" class="form-control" id="to" placeholder="To">
-    </div>
-
-    <div class="d-flex align-items-end">
-        <button id="search" type="button" class="btn btn-primary">Search</button>
+        <h4 class="text-center">Result</h4>
+        <p id="pathResult" class="text-center fw-bold">TEST1</p>
+        <p class="text-center fw-bold">Cost: <span id="pathCost"></span></p>
     </div>
 </div>
+
 
 <div>
     @* <div>
